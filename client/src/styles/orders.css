@@ -1,0 +1,137 @@
+.orders-page-container {
+    max-width: 860px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: sans-serif;
+}
+
+.orders-page-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #1a1a1a;
+}
+
+.orders-page-error {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+}
+
+.orders-page-empty {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+.orders-page-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.orders-page-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.orders-page-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.orders-page-card-id {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #111827;
+}
+
+.orders-page-card-date {
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.orders-page-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+}
+
+.orders-page-table th {
+    text-align: left;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+    padding: 8px 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.orders-page-table td {
+    padding: 10px 10px;
+    font-size: 0.95rem;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.orders-page-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.orders-page-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.orders-page-card-total {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #111827;
+}
+
+.orders-page-delete-btn {
+    background-color: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.orders-page-delete-btn:hover {
+    background-color: #dc2626;
+}
+
+.orders-page-delete-btn:active {
+    background-color: #b91c1c;
+}
+
+.orders-page-show-more-btn {
+    display: block;
+    margin: 24px auto 0;
+    padding: 10px 28px;
+    background-color: #f3f4f6;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.orders-page-show-more-btn:hover {
+    background-color: #e5e7eb;
+}

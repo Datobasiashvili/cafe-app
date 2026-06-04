@@ -1,0 +1,137 @@
+
+:root {
+  --sidebar-width:        240px;   
+  --sidebar-collapsed:     72px; 
+  --layout-transition:    0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --layout-content-bg:    #f4f4f0;
+  --layout-content-pad:   32px;
+}
+
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden; 
+  background-color: var(--layout-content-bg);
+}
+
+
+.admin-content {
+  flex: 1;
+  min-width: 0;                       
+  margin-left: var(--sidebar-width);    
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--layout-content-pad);
+  background-color: var(--layout-content-bg);
+  transition: margin-left var(--layout-transition);
+
+  scroll-behavior: smooth;
+}
+
+
+.admin-container.sidebar--collapsed .admin-content,
+.sidebar--collapsed ~ .admin-content {
+  margin-left: var(--sidebar-collapsed);
+}
+
+
+.admin-content > * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it stays on top */
+}
+
+/* Modal Box */
+.modal-content {
+    background: white;
+    padding: 2.3rem;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.modal-cancel-btn, .modal-confirm-btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.modal-cancel-btn {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.modal-cancel-btn:hover {
+    background-color: #d0d0d0;
+}
+
+.modal-confirm-btn {
+    background-color: #ff4d4d; 
+    color: white;
+}
+
+.modal-confirm-btn:hover {
+    background-color: #e60000;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+@media (max-width: 768px) {
+  .admin-content {
+    margin-left: 0;
+    padding: 20px 16px;
+  }
+
+  .admin-container.drawer-open .admin-content {
+    pointer-events: none;
+    opacity: 0.4;
+    transition: opacity var(--layout-transition);
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-content {
+    padding: 16px 12px;
+  }
+}
