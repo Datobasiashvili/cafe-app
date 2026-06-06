@@ -25,7 +25,6 @@ const getOrders = async (req, res) => {
         const page = Math.max(1, parseInt(req.query.page) || 1);
         const skip = (page - 1) * PAGE_SIZE;
 
-        // Using aggregation for consistent data processing
         const [orders, totalResult] = await Promise.all([
             Order.aggregate([
                 { $sort: { createdAt: -1 } },
@@ -68,7 +67,6 @@ const getSingleOrder = async (req, res) => {
     try {
         const { id } = req.params;
         
-        // Validate MongoDB ObjectId
         if (!id.match(/^[0-9a-fA-F]{24}$/)) {
             return res.status(400).json({
                 message: "Invalid order ID format"
@@ -95,7 +93,6 @@ const getSingleOrder = async (req, res) => {
 
 const getOrderStats = async (req, res) => {
     try {
-        // Single aggregation pipeline for all stats (more efficient)
         const stats = await Order.aggregate([
             {
                 $facet: {
@@ -174,7 +171,6 @@ const deleteOrder = async (req, res) => {
     try {
         const { id } = req.params;
         
-        // Validate MongoDB ObjectId
         if (!id.match(/^[0-9a-fA-F]{24}$/)) {
             return res.status(400).json({
                 message: "Invalid order ID format"

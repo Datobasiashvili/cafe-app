@@ -29,7 +29,7 @@ export default function Login() {
 
                 setUser(userRes.data.user);
 
-                navigate("/dashboard");
+                navigate("/add-order");
             }
         } catch (err) {
             setError(err.response?.data?.message || "Login failed. Please try again.");

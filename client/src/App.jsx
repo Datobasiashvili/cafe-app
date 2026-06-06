@@ -26,6 +26,7 @@ export default function App() {
 
         <Route element={<ProtectedRoute allowedRoles={["receptionist", "staff"]} />}>
           <Route element={<AdminLayout />}>
+            <Route path="/dashboard" element={<Navigate to="/analytics" replace />} />
             <Route path="/analytics" element={<Stats />} />
             <Route path="/orders" element={<Orders />} />
             

@@ -63,12 +63,12 @@ export default function Orders() {
 
     return (
         <div className="orders-page-container">
-            <h1 className="orders-page-title">Latest Orders</h1>
+            <h1 className="orders-page-title">შეკვეთები</h1>
 
             {error && <p className="orders-page-error">{error}</p>}
 
             {orders.length === 0 && !loading && !error ? (
-                <p className="orders-page-empty">No orders found.</p>
+                <p className="orders-page-empty">არ არის შეკვეთები.</p>
             ) : (
                 <>
                     <div className="orders-page-list">
@@ -90,10 +90,10 @@ export default function Orders() {
                                 <table className="orders-page-table">
                                     <thead>
                                         <tr>
-                                            <th>Product</th>
-                                            <th>Price</th>
-                                            <th>Qty</th>
-                                            <th>Subtotal</th>
+                                            <th>პროდუქტი</th>
+                                            <th>ფასი</th>
+                                            <th>რაოდ.</th>
+                                            <th>ფასი</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -109,13 +109,13 @@ export default function Orders() {
                                 </table>
 
                                 <div className="orders-page-card-footer">
-                                    <span className="orders-page-card-total">Total: ₾{order.totalPrice.toFixed(2)}</span>
+                                    <span className="orders-page-card-total">ჯამში: ₾{order.totalPrice.toFixed(2)}</span>
                                     {user.role === "receptionist" && (
                                         <button
                                             className="orders-page-delete-btn"
                                             onClick={() => openDeleteModal(order._id)}
                                         >
-                                            Delete Order
+                                            შეკვეთის წაშლა
                                         </button>
                                     )}
                                 </div>
@@ -134,11 +134,11 @@ export default function Orders() {
             {isModalOpen && (
                 <div className="modal-overlay">
                     <div className="modal-content">
-                        <h3>Confirm Deletion</h3>
-                        <p>Are you sure you want to delete this order? This action cannot be undone.</p>
+                        <h3>დაადასტურეთ</h3>
+                        <p>დარწმუნებული ხართ, რომ გინდათ შეკვეთის წაშლა? ამ შეკვეთის აღდგენა ვეღარ მოხდება.</p>
                         <div className="modal-actions">
-                            <button className="modal-cancel-btn" onClick={closeDeleteModal}>Cancel</button>
-                            <button className="modal-confirm-btn" onClick={confirmDelete}>Delete</button>
+                            <button className="modal-cancel-btn" onClick={closeDeleteModal}>უკან დაბრუნება</button>
+                            <button className="modal-confirm-btn" onClick={confirmDelete}>წაშლა</button>
                         </div>
                     </div>
                 </div>
