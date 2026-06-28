@@ -1,0 +1,174 @@
+.pool {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: system-ui, sans-serif;
+  color: #1a1a1a;
+}
+
+.pool-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.reset-btn {
+  display: block;
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.875rem;
+  color: #555;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.reset-btn:hover {
+  background: #f5f5f5;
+}
+
+.reset-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.pool-loader {
+  display: grid;
+  min-height: 40vh;
+  place-items: center;
+}
+
+.pool-error {
+  padding: 0.75rem 1rem;
+  margin: 0 0 1rem;
+  color: #991b1b;
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+}
+
+.sunbed-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.sunbed-modal {
+  position: relative;
+  width: min(420px, 100%);
+  padding: 1.25rem;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25);
+}
+
+.sunbed-modal h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.2rem;
+}
+
+.sunbed-modal p {
+  margin: 0 0 1rem;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.sunbed-modal-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+.sunbed-price-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.sunbed-price-btn {
+  min-height: 58px;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  background: #f0f9ff;
+  color: #075985;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.15rem;
+}
+
+.sunbed-price-btn span {
+  font-size: 0.75rem;
+}
+
+.sunbed-price-btn strong {
+  font-size: 1rem;
+}
+
+.sunbed-price-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.sunbed-modal-btn {
+  min-height: 40px;
+  border-radius: 6px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+.sunbed-modal-btn.occupy {
+  background: #dc2626;
+}
+
+.sunbed-modal-btn.reserve {
+  background: #d97706;
+}
+
+.sunbed-modal-btn.free {
+  background: #059669;
+}
+
+.sunbed-modal-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+/* ── X close button ── */
+.sunbed-modal-cancel {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1;
+  color: #94a3b8;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.sunbed-modal-cancel:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}

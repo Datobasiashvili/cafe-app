@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "../context/AuthContext";
+import { formatDateGeorgian, formatTimeGeorgian } from "../utils/dateFormatter";
 import axios from "axios";
 import "../styles/orders.css";
 
@@ -61,6 +62,30 @@ export default function Orders() {
         }
     };
 
+    const toggleOrderStatus = async (orderId, currentReady) => {
+        const newReady = !currentReady;
+
+        try {
+            const response = await axios.patch(`${API_URL}/order/${orderId}/status`, 
+                { ready: newReady },
+                { withCredentials: true }
+            );
+
+            if (response.status === 200) {
+                setOrders((prev) =>
+                    prev.map((order) =>
+                        order._id === orderId
+                            ? { ...order, ready: newReady }
+                            : order
+                    )
+                );
+            }
+        } catch (error) {
+            console.error('Error updating order status', error);
+            setError(error.response?.data?.message || "Failed to update order status");
+        }
+    };
+
     return (
         <div className="orders-page-container">
             <h1 className="orders-page-title">შეკვეთები</h1>
@@ -76,14 +101,10 @@ export default function Orders() {
                             <div key={order._id} className="orders-page-card">
                                 <div className="orders-page-card-header">
                                     <span className="orders-page-card-id">
-                                        {new Date(order.createdAt).toLocaleTimeString("en-US", {
-                                            hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false
-                                        })}
+                                        {formatTimeGeorgian(order.createdAt)}
                                     </span>
                                     <span className="orders-page-card-date">
-                                        {new Date(order.createdAt).toLocaleDateString("en-US", {
-                                            year: "numeric", month: "short", day: "numeric"
-                                        })}
+                                        {formatDateGeorgian(order.createdAt)}
                                     </span>
                                 </div>
 
@@ -110,14 +131,23 @@ export default function Orders() {
 
                                 <div className="orders-page-card-footer">
                                     <span className="orders-page-card-total">ჯამში: ₾{order.totalPrice.toFixed(2)}</span>
-                                    {user.role === "receptionist" && (
+                                    <div className="orders-page-card-actions">
                                         <button
-                                            className="orders-page-delete-btn"
-                                            onClick={() => openDeleteModal(order._id)}
+                                            className={`orders-page-status-btn ${order.ready ? "ready" : ""}`}
+                                            onClick={() => toggleOrderStatus(order._id, order.ready)}
+                                            title={order.ready ? "მონიშნულია როგორც მზად" : "მონიშნე მზადად"}
                                         >
-                                            შეკვეთის წაშლა
+                                            {order.ready ? "✓ მზადაა" : "მზადდება"}
                                         </button>
-                                    )}
+                                        {user.role === "receptionist" && (
+                                            <button
+                                                className="orders-page-delete-btn"
+                                                onClick={() => openDeleteModal(order._id)}
+                                            >
+                                                შეკვეთის წაშლა
+                                            </button>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         ))}

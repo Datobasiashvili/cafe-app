@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { createOrder, getOrders, getSingleOrder, getOrderStats, deleteOrder } = require("../controllers/orderController");
+const { createOrder, getOrders, getSingleOrder, getOrderStats, deleteOrder, updateOrderStatus } = require("../controllers/orderController");
 const validateOrder = require("../middlewares/validateOrder");
 const { authenticate, authorize } = require("../middlewares/authMiddleware");
 
@@ -34,6 +34,12 @@ router.delete("/order/:id",
     authenticate,
     authorize("receptionist"),
     deleteOrder
+);
+
+router.patch("/order/:id/status",
+    authenticate,
+    authorize("receptionist", "staff"),
+    updateOrderStatus
 );
 
 

@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import PrintPreview from "../components/PrintPreview";
 import "../styles/addOrder.css";
 
 export default function AddOrder() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   const [error, setError] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [showPrintPreview, setShowPrintPreview] = useState(false);
+  const [orderToPrint, setOrderToPrint] = useState(null);
   const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
@@ -19,7 +23,7 @@ export default function AddOrder() {
       }
     };
     fetchProducts();
-  }, []);
+  }, [API_URL]);
 
   const grouped = products.reduce((acc, item) => {
     if (!acc[item.category]) acc[item.category] = [];
@@ -48,20 +52,34 @@ export default function AddOrder() {
   };
 
   const handleSaveOrder = async () => {
+    if (saving) return;
+
     const items = Object.entries(cart).map(([product, { price, quantity }]) => ({
-      product, price, quantity,
+      product,
+      price: Number(price),
+      quantity: Number(quantity),
     }));
+
     if (items.length === 0) {
       setError("გთხოვთ დაამატოთ ერთი პროდუქტი მაინც");
       setTimeout(() => setError(""), 2000);
       return;
     }
+
     try {
+      setSaving(true);
+      setError("");
       const response = await axios.post(`${API_URL}/order`, { items }, { withCredentials: true });
-      if (response.status === 201) { setCart({}); setError(""); }
+      if (response.status === 201) {
+        setOrderToPrint(response.data.order || { items });
+        setShowPrintPreview(true);
+        setCart({});
+      }
     } catch (err) {
-      setError("Error while saving order");
+      setError(err.response?.data?.message || "Error while saving order");
       console.error(err);
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -83,6 +101,9 @@ export default function AddOrder() {
   return (
     <div className="ao-layout">
       {error && <p className="ao-error">{error}</p>}
+      {showPrintPreview && orderToPrint && (
+        <PrintPreview order={orderToPrint} onClose={() => setShowPrintPreview(false)} />
+      )}
 
       <div className="ao-left">
         {Object.entries(grouped).map(([category, items]) => (
@@ -157,7 +178,9 @@ export default function AddOrder() {
           </div>
           <div className="ao-footer-btns">
             <button className="ao-btn" onClick={() => setCart({})}>გადატვირთვა</button>
-            <button className="ao-btn primary" onClick={handleSaveOrder}>შენახვა</button>
+            <button className="ao-btn primary" onClick={handleSaveOrder} disabled={saving}>
+              {saving ? "Saving..." : "შენახვა"}
+            </button>
           </div>
         </div>
       </div>

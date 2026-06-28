@@ -28,9 +28,10 @@
   font-family: 'DM Sans', sans-serif;
   color: var(--text);
   min-height: 100vh;
-  padding: 1.2rem 2rem 2rem 0;
-  max-width: 1280px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  padding: 1rem 0 2rem;
+  margin: 0;
 }
 
 /* ── Header ── */
@@ -54,6 +55,75 @@
   font-size: 0.875rem;
   color: var(--text-muted);
   margin: 0;
+}
+
+.stats-date-filter {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.stats-date-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.stats-date-field input {
+  height: 36px;
+  min-width: 145px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0 0.65rem;
+  font: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.stats-date-field input:focus {
+  outline: 2px solid rgba(99, 102, 241, 0.18);
+  border-color: rgba(99, 102, 241, 0.55);
+}
+
+.stats-date-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.stats-date-actions button {
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-soft);
+  padding: 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.stats-date-actions button:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  color: var(--brand-light);
+}
+
+.stats-error {
+  margin: -1rem 0 1rem;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-sm);
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 0.85rem;
 }
 
 .header-badge {
@@ -119,7 +189,7 @@
 }
 
 .kpi-icon {
-  width: 40px;
+  width: 44px;
   height: 40px;
   border-radius: var(--radius-sm);
   background: rgba(99, 102, 241, 0.12);
@@ -127,7 +197,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-family: 'DM Mono', monospace;
   color: var(--brand-light);
   flex-shrink: 0;
@@ -167,8 +237,12 @@
 /* ── Charts Grid ── */
 .charts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
   gap: 1.25rem;
+}
+
+.sunbed-kpi-grid {
+  margin-top: 1.5rem;
 }
 
 .chart-card {

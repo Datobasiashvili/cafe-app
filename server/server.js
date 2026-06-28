@@ -8,6 +8,7 @@ require("dotenv").config();
 const authRoutes = require("./routes/authRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const productRoutes = require("./routes/productRoutes");
+const sunBedRoutes = require("./routes/sunBedRoutes");
 
 const allowedOrigins = [
   process.env.FRONTEND_URL,
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use("/api", authRoutes);
 app.use("/api", orderRoutes);
 app.use("/api", productRoutes);
+app.use("/api", sunBedRoutes);
 
 // 404 Handler - must be after all routes
 app.use((req, res) => {

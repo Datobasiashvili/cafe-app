@@ -1,0 +1,284 @@
+/* Print Preview Modal */
+.print-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.print-modal {
+  background: #fefcf8;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  width: 90%;
+  max-height: 85vh;
+  overflow: hidden;
+}
+
+.print-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(60, 40, 10, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.print-header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1c1917;
+  font-family: 'Syne', sans-serif;
+}
+
+.print-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #a8a29e;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+}
+
+.print-close:hover {
+  color: #1c1917;
+}
+
+.print-preview-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Receipt Styling */
+.receipt {
+  width: 80mm;
+  background: #ffffff;
+  border: 1px solid rgba(60, 40, 10, 0.15);
+  border-radius: 4px;
+  padding: 12px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: #1c1917;
+  line-height: 1.5;
+}
+
+.receipt-content {
+  text-align: center;
+}
+
+.receipt-header {
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #1c1917;
+}
+
+.receipt-header h1 {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1c1917;
+  font-family: 'Syne', sans-serif;
+}
+
+.receipt-time {
+  margin: 0;
+  font-size: 10px;
+  color: #a8a29e;
+}
+
+.receipt-items {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.receipt-items table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+}
+
+.receipt-items thead {
+  border-bottom: 1px solid rgba(60, 40, 10, 0.1);
+}
+
+.receipt-items th {
+  padding: 4px 2px;
+  text-align: left;
+  font-weight: 600;
+  color: #1c1917;
+}
+
+.receipt-items td {
+  padding: 6px 2px;
+  border-bottom: 1px solid rgba(60, 40, 10, 0.05);
+}
+
+.item-name {
+  text-align: left;
+  max-width: 35px;
+  word-break: break-word;
+}
+
+.item-qty {
+  text-align: center;
+  width: 20px;
+}
+
+.item-price {
+  text-align: right;
+  width: 20px;
+}
+
+.item-total {
+  text-align: right;
+  width: 20px;
+  font-weight: 600;
+}
+
+.receipt-divider {
+  text-align: center;
+  margin: 8px 0;
+  color: #a8a29e;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.receipt-total {
+  margin-bottom: 12px;
+  padding: 10px;
+  background: rgba(28, 25, 23, 0.02);
+  border-radius: 4px;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-weight: 700;
+}
+
+.total-amount {
+  font-size: 14px;
+  color: #b45309;
+}
+
+.receipt-footer {
+  text-align: center;
+  font-size: 10px;
+  color: #a8a29e;
+  margin-top: 12px;
+}
+
+.receipt-footer p {
+  margin: 0;
+}
+
+/* Print Actions */
+.print-actions {
+  padding: 12px 20px;
+  border-top: 1px solid rgba(60, 40, 10, 0.1);
+  display: flex;
+  gap: 10px;
+}
+
+.print-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(60, 40, 10, 0.2);
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #44403c;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.print-btn:hover {
+  background: #1c1917;
+  border-color: #1c1917;
+  color: #ffffff;
+}
+
+.print-btn.primary {
+  background: #016b1e;
+  border-color: #016b1e;
+  color: #ffffff;
+}
+
+.print-btn.primary:hover {
+  background: #015718;
+  border-color: #015718;
+}
+
+.print-btn.cancel {
+  background: #f5f0e8;
+  border-color: rgba(60, 40, 10, 0.1);
+}
+
+/* Print Styles */
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .receipt {
+    width: 80mm;
+    border: none;
+    box-shadow: none;
+    page-break-after: avoid;
+  }
+
+  .print-header,
+  .print-actions,
+  .print-overlay {
+    display: none !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .print-modal {
+    max-width: 95%;
+  }
+
+  .receipt {
+    width: 100%;
+  }
+}

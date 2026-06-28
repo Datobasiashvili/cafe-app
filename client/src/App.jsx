@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Stats from "./pages/Stats";
 import AddOrder from "./pages/AddOrder";
 import Orders from "./pages/Orders";
+import Pool from "./pages/Pool";
 import Settings from "./pages/Settings";
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
             <Route path="/dashboard" element={<Navigate to="/analytics" replace />} />
             <Route path="/analytics" element={<Stats />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/pool" element={<Pool />} />
             
             <Route element={<ProtectedRoute allowedRoles={['receptionist']} />}>
               <Route path="/add-order" element={<AddOrder />} />

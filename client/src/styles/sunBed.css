@@ -1,0 +1,88 @@
+/* ── Base button reset ── */
+.sunbed {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.12s;
+  position: relative;
+}
+
+.sunbed:hover  { transform: scale(1.12); }
+.sunbed:active { transform: scale(0.93); }
+
+/* ══════════════════════════════════
+   HORIZONTAL  (top / bottom rows)
+   Layout: [pillow] [body →]
+   ══════════════════════════════════ */
+.sunbed--horizontal {
+  flex-direction: row;
+  gap: 0;
+}
+
+.sunbed--horizontal .sunbed-pillow {
+  width: 10px;
+  height: 22px;
+  border-radius: 4px 0 0 4px;
+  flex-shrink: 0;
+}
+
+.sunbed--horizontal .sunbed-body {
+  width: 32px;
+  height: 22px;
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ══════════════════════════════════
+   VERTICAL  (left / right columns)
+   Layout: [pillow on top] [body ↓]
+   ══════════════════════════════════ */
+.sunbed--vertical {
+  flex-direction: column;
+  gap: 0;
+}
+
+.sunbed--vertical .sunbed-pillow {
+  width: 22px;
+  height: 10px;
+  border-radius: 4px 4px 0 0;
+}
+
+.sunbed--vertical .sunbed-body {
+  width: 22px;
+  height: 32px;
+  border-radius: 0 0 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ══════════════════════════════════
+   COLOUR STATES
+   ══════════════════════════════════ */
+.sunbed--available .sunbed-pillow,
+.sunbed--free .sunbed-pillow  { background: #34c48a; }
+.sunbed--available .sunbed-body,
+.sunbed--free .sunbed-body    { background: #5DCAA5; border: 1.5px solid #1D9E75; }
+
+.sunbed--occupied .sunbed-pillow,
+.sunbed--taken .sunbed-pillow { background: #e05555; }
+.sunbed--occupied .sunbed-body,
+.sunbed--taken .sunbed-body   { background: #F09595; border: 1.5px solid #E24B4A; }
+
+.sunbed--reserved .sunbed-pillow { background: #d99a12; }
+.sunbed--reserved .sunbed-body   { background: #F8D477; border: 1.5px solid #D79B18; }
+
+/* ── Bed number ── */
+.sunbed-number {
+  font-size: 9px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.45);
+  line-height: 1;
+  pointer-events: none;
+}
